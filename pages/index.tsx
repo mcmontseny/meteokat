@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="flex flex-col md:flex-row h-full bg-[#f7f6f9]">
+      <div className="flex flex-col lg:flex-row h-full bg-[#f7f6f9]">
         <div className="flex flex-col bg-white p-6">
           <div className="flex flex-row justify-between pb-4 items-center">
             <div className="flex flex-row items-center text-base flex-1">
@@ -28,9 +28,9 @@ const Home: NextPage = () => {
             </div>
             <FontAwesomeIcon className="h-4" icon={faLocationArrow} />
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col mb-4">
             <div className="flex flex-row items-baseline justify-between">
-              <p className="text-2xl font-bold">Santa Coloma de Farners</p>
+              <p className="text-2xl font-bold pr-2">Santa Coloma de Farners</p>
               <div className="flex flex-row">
                 <img
                   className="h-5 w-5"
@@ -85,7 +85,7 @@ const Home: NextPage = () => {
             <span className="text-lg font-bold mb-4 text-[#858585]">
               Llocs preferits
             </span>
-            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               <div className="flex flex-row bg-[#f7f6f9] rounded-lg p-2 shadow-md w-100">
                 <img
                   className="w-8 h-8 mr-4 self-center"
@@ -260,15 +260,15 @@ const Home: NextPage = () => {
         </div>
 
         <div className="flex flex-col">
-          <div className="flex flex-col md:flex-row justify-start">
+          <div className="grid gap-4 md:grid-cols-2">
             <div className="flex flex-col mb-0 justify-between">
               <div className="flex flex-col">
                 <p className="text-xl font-bold flex-1 mb-4">
                   Predicció pròximes hores
                 </p>
               </div>
-              <div className="rounded-lg mb-4 p-4 shadow-md bg-white">
-                <div className="grid gap-4 sm:grid-cols-2 mb-4 sm:mb-6">
+              <div className="flex flex-col justify-between rounded-lg mb-4 p-4 shadow-md bg-white h-full">
+                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 mb-4 sm:mb-6">
                   <div className="flex flex-row rounded-lg">
                     <img
                       className="w-8 h-8 self-center mr-4"
@@ -410,7 +410,7 @@ const Home: NextPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col flex-1">
+                <div className="flex flex-col flex-1 justify-end">
                   <div className="w-full sm:w-2/3 sm:self-center bg-[#858585]/10 rounded-lg text-center py-1 shadow-md">
                     <p className="text-base font-bold text-black">
                       Visualitzar més hores
@@ -426,8 +426,8 @@ const Home: NextPage = () => {
                   Predicció 7 dies
                 </p>
               </div>
-              <div className="rounded-lg mb-4 p-4 shadow-md bg-white">
-                <div className="grid gap-4 sm:grid-cols-2 mb-4 sm:mb-6">
+              <div className="rounded-lg mb-4 p-4 shadow-md bg-white h-full">
+                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 mb-4 sm:mb-6">
                   <div className="flex flex-row rounded-lg">
                     <img
                       className="w-8 h-8 self-center mr-4"
