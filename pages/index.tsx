@@ -254,7 +254,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col bg-[#f7f6f9] h-ful p-6">
+      <div className="flex flex-col flex-1 bg-[#f7f6f9] h-ful p-6">
         <div className="flex flex-row mb-4 items-center justify-between">
           <p className="text-2xl font-bold">El temps</p>
         </div>
@@ -268,7 +268,7 @@ const Home: NextPage = () => {
                 </p>
               </div>
               <div className="flex flex-col justify-between rounded-lg mb-4 p-4 shadow-md bg-white h-full">
-                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 mb-4 sm:mb-6">
+                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 2xl:grid-cols-2 mb-4 sm:mb-6">
                   <div className="flex flex-row rounded-lg">
                     <img
                       className="w-8 h-8 self-center mr-4"
@@ -427,7 +427,7 @@ const Home: NextPage = () => {
                 </p>
               </div>
               <div className="rounded-lg mb-4 p-4 shadow-md bg-white h-full">
-                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 mb-4 sm:mb-6">
+                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 2xl:grid-cols-2  mb-4 sm:mb-6">
                   <div className="flex flex-row rounded-lg">
                     <img
                       className="w-8 h-8 self-center mr-4"
@@ -1391,7 +1391,7 @@ const Home: NextPage = () => {
 
         <div className="flex flex-col">
           <p className="text-xl font-bold mb-4">El més destacat d'avui</p>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             <div className="flex flex-col bg-white rounded-lg w-full p-4 justify-between shadow-md">
               <p className="self-start text-base text-[#858585] font-bold pb-2">
                 Índex ultraviolat (UVI)
