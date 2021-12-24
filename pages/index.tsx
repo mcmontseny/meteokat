@@ -4,6 +4,7 @@ import Search from "../components/Search";
 import CurrentWeather from "../components/CurrentWeather";
 import FavoritesList from "../components/FavoritesList";
 import SummaryCard from "../components/SummaryCard";
+import Forecast from "../components/Forecast";
 
 const Home: NextPage = () => {
   const currentWeatherInfo: any = {
@@ -82,344 +83,310 @@ const Home: NextPage = () => {
 
         <div className="flex flex-col">
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="flex flex-col mb-0 justify-between">
-              <div className="flex flex-col">
-                <p className="text-xl font-bold flex-1 mb-4">
-                  Predicció pròximes hores
-                </p>
-              </div>
-              <div className="flex flex-col justify-between rounded-lg mb-4 p-4 shadow-md bg-white h-full">
-                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 2xl:grid-cols-2 mb-4 sm:mb-6">
-                  <div className="flex flex-row rounded-lg">
-                    <img
-                      className="w-8 h-8 self-center mr-4"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <div className="flex flex-col flex-1">
-                      <p className="font-bold text-black text-sm">18:00</p>
-                      <div className="flex flex-row flex-wrap">
-                        <div className="flex flex-row pr-2 items-center">
-                          <p className="text-black text-sm">14°C</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">67%</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">38%</p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">8km/h</p>
-                        </div>
+            <Forecast
+              title="Predicció pròximes hores"
+              btnName="Visualitzar més hores"
+            >
+              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 2xl:grid-cols-2 mb-4 sm:mb-6">
+                <div className="flex flex-row rounded-lg">
+                  <img
+                    className="w-8 h-8 self-center mr-4"
+                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                  />
+                  <div className="flex flex-col flex-1">
+                    <p className="font-bold text-black text-sm">18:00</p>
+                    <div className="flex flex-row flex-wrap">
+                      <div className="flex flex-row pr-2 items-center">
+                        <p className="text-black text-sm">14°C</p>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-row rounded-lg">
-                    <img
-                      className="w-8 h-8 self-center mr-4"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <div className="flex flex-col flex-1">
-                      <p className="font-bold text-black text-sm">19:00</p>
-                      <div className="flex flex-row flex-wrap">
-                        <div className="flex flex-row pr-2 items-center">
-                          <p className="text-black text-sm">14°C</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">67%</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">38%</p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">8km/h</p>
-                        </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">67%</p>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-row rounded-lg">
-                    <img
-                      className="w-8 h-8 self-center mr-4"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <div className="flex flex-col flex-1">
-                      <p className="font-bold text-black text-sm">20:00</p>
-                      <div className="flex flex-row flex-wrap">
-                        <div className="flex flex-row pr-2 items-center">
-                          <p className="text-black text-sm">14°C</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">67%</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">38%</p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">8km/h</p>
-                        </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">38%</p>
                       </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-row rounded-lg">
-                    <img
-                      className="w-8 h-8 self-center mr-4"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <div className="flex flex-col flex-1">
-                      <p className="font-bold text-black text-sm">21:00</p>
-                      <div className="flex flex-row flex-wrap">
-                        <div className="flex flex-row pr-2 items-center">
-                          <p className="text-black text-sm">14°C</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">67%</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">38%</p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">8km/h</p>
-                        </div>
+                      <div className="flex flex-row items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">8km/h</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col flex-1 justify-end">
-                  <div className="w-full sm:w-2/3 sm:self-center bg-[#858585]/10 rounded-lg text-center py-1 shadow-md">
-                    <p className="text-base font-bold text-black">
-                      Visualitzar més hores
-                    </p>
+                <div className="flex flex-row rounded-lg">
+                  <img
+                    className="w-8 h-8 self-center mr-4"
+                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                  />
+                  <div className="flex flex-col flex-1">
+                    <p className="font-bold text-black text-sm">19:00</p>
+                    <div className="flex flex-row flex-wrap">
+                      <div className="flex flex-row pr-2 items-center">
+                        <p className="text-black text-sm">14°C</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">67%</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">38%</p>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">8km/h</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row rounded-lg">
+                  <img
+                    className="w-8 h-8 self-center mr-4"
+                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                  />
+                  <div className="flex flex-col flex-1">
+                    <p className="font-bold text-black text-sm">20:00</p>
+                    <div className="flex flex-row flex-wrap">
+                      <div className="flex flex-row pr-2 items-center">
+                        <p className="text-black text-sm">14°C</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">67%</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">38%</p>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">8km/h</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row rounded-lg">
+                  <img
+                    className="w-8 h-8 self-center mr-4"
+                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                  />
+                  <div className="flex flex-col flex-1">
+                    <p className="font-bold text-black text-sm">21:00</p>
+                    <div className="flex flex-row flex-wrap">
+                      <div className="flex flex-row pr-2 items-center">
+                        <p className="text-black text-sm">14°C</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">67%</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">38%</p>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">8km/h</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Forecast>
 
-            <div className="flex flex-col mb-0 justify-between">
-              <div className="flex flex-col">
-                <p className="text-xl font-bold flex-1 mb-4">
-                  Predicció 7 dies
-                </p>
-              </div>
-              <div className="rounded-lg mb-4 p-4 shadow-md bg-white h-full">
-                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 2xl:grid-cols-2  mb-4 sm:mb-6">
-                  <div className="flex flex-row rounded-lg">
-                    <img
-                      className="w-8 h-8 self-center mr-4"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <div className="flex flex-col flex-1">
-                      <p className="font-bold text-black text-sm">
-                        <span className="text-[#858585]">Dj,</span> 23 desembre
-                      </p>
-                      <div className="flex flex-row flex-wrap">
-                        <div className="flex flex-row pr-2 items-center">
-                          <p className="text-blue-600 pr-1 text-sm font">
-                            -3°C
-                          </p>
-                          <p className="text-red-600 text-sm">14°C</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">67%</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">38%</p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">8km/h</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-row rounded-lg">
-                    <img
-                      className="w-8 h-8 self-center mr-4"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <div className="flex flex-col flex-1">
-                      <p className="font-bold text-black text-sm">
-                        <span className="text-[#858585]">Dv,</span> 24 desembre
-                      </p>
-                      <div className="flex flex-row flex-wrap">
-                        <div className="flex flex-row pr-2 items-center">
-                          <p className="text-blue-600 pr-1 text-sm font">
-                            -3°C
-                          </p>
-                          <p className="text-red-600 text-sm">14°C</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">67%</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">38%</p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">8km/h</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-row rounded-lg">
-                    <img
-                      className="w-8 h-8 self-center mr-4"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <div className="flex flex-col flex-1">
-                      <p className="font-bold text-black text-sm">
-                        <span className="text-[#858585]">Ds,</span> 25 desembre
-                      </p>
-                      <div className="flex flex-row flex-wrap">
-                        <div className="flex flex-row pr-2 items-center">
-                          <p className="text-blue-600 pr-1 text-sm font">
-                            -3°C
-                          </p>
-                          <p className="text-red-600 text-sm">14°C</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">67%</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">38%</p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">8km/h</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-row rounded-lg">
-                    <img
-                      className="w-8 h-8 self-center mr-4"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <div className="flex flex-col flex-1">
-                      <p className="font-bold text-black text-sm">
-                        <span className="text-[#858585]">Dg,</span> 26 desembre
-                      </p>
-                      <div className="flex flex-row flex-wrap">
-                        <div className="flex flex-row pr-2 items-center">
-                          <p className="text-blue-600 pr-1 text-sm font">
-                            -3°C
-                          </p>
-                          <p className="text-red-600 text-sm">14°C</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">67%</p>
-                        </div>
-                        <div className="flex flex-row pr-2 items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">38%</p>
-                        </div>
-                        <div className="flex flex-row items-center">
-                          <img
-                            className="h-3 pr-1"
-                            src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                          />
-                          <p className="text-sm">8km/h</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col flex-1">
-                  <div className="w-full sm:w-2/3 sm:self-center bg-[#858585]/10 rounded-lg text-center py-1 shadow-md">
-                    <p className="text-base font-bold text-black">
-                      Visualitzar més dies
+            <Forecast title="Predicció 7 dies" btnName="Visualitzar més dies">
+              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1 2xl:grid-cols-2  mb-4 sm:mb-6">
+                <div className="flex flex-row rounded-lg">
+                  <img
+                    className="w-8 h-8 self-center mr-4"
+                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                  />
+                  <div className="flex flex-col flex-1">
+                    <p className="font-bold text-black text-sm">
+                      <span className="text-[#858585]">Dj,</span> 23 desembre
                     </p>
+                    <div className="flex flex-row flex-wrap">
+                      <div className="flex flex-row pr-2 items-center">
+                        <p className="text-blue-600 pr-1 text-sm font">-3°C</p>
+                        <p className="text-red-600 text-sm">14°C</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">67%</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">38%</p>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">8km/h</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row rounded-lg">
+                  <img
+                    className="w-8 h-8 self-center mr-4"
+                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                  />
+                  <div className="flex flex-col flex-1">
+                    <p className="font-bold text-black text-sm">
+                      <span className="text-[#858585]">Dv,</span> 24 desembre
+                    </p>
+                    <div className="flex flex-row flex-wrap">
+                      <div className="flex flex-row pr-2 items-center">
+                        <p className="text-blue-600 pr-1 text-sm font">-3°C</p>
+                        <p className="text-red-600 text-sm">14°C</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">67%</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">38%</p>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">8km/h</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row rounded-lg">
+                  <img
+                    className="w-8 h-8 self-center mr-4"
+                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                  />
+                  <div className="flex flex-col flex-1">
+                    <p className="font-bold text-black text-sm">
+                      <span className="text-[#858585]">Ds,</span> 25 desembre
+                    </p>
+                    <div className="flex flex-row flex-wrap">
+                      <div className="flex flex-row pr-2 items-center">
+                        <p className="text-blue-600 pr-1 text-sm font">-3°C</p>
+                        <p className="text-red-600 text-sm">14°C</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">67%</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">38%</p>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">8km/h</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-row rounded-lg">
+                  <img
+                    className="w-8 h-8 self-center mr-4"
+                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                  />
+                  <div className="flex flex-col flex-1">
+                    <p className="font-bold text-black text-sm">
+                      <span className="text-[#858585]">Dg,</span> 26 desembre
+                    </p>
+                    <div className="flex flex-row flex-wrap">
+                      <div className="flex flex-row pr-2 items-center">
+                        <p className="text-blue-600 pr-1 text-sm font">-3°C</p>
+                        <p className="text-red-600 text-sm">14°C</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">67%</p>
+                      </div>
+                      <div className="flex flex-row pr-2 items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">38%</p>
+                      </div>
+                      <div className="flex flex-row items-center">
+                        <img
+                          className="h-3 pr-1"
+                          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+                        />
+                        <p className="text-sm">8km/h</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Forecast>
           </div>
         </div>
 
@@ -501,7 +468,7 @@ const Home: NextPage = () => {
               </div>
             </SummaryCard>
             <SummaryCard title="Visibilitat">
-            <div className="flex flex-row pb-2">
+              <div className="flex flex-row pb-2">
                 <p className="self-end text-4xl text-black mr-2">5.2</p>
                 <p className="self-end text-xl text-[#858585]">km</p>
               </div>
@@ -513,7 +480,7 @@ const Home: NextPage = () => {
               </div>
             </SummaryCard>
             <SummaryCard title="Qualitat de l'aire">
-            <div className="flex flex-row pb-2">
+              <div className="flex flex-row pb-2">
                 <p className="self-end text-4xl text-black mr-2">105</p>
               </div>
               <div className="flex flex-row items-center">
