@@ -1,9 +1,64 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { faLocationArrow, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Search from "../components/Search";
+import CurrentWeather from "../components/CurrentWeather";
+import FavoritesList from "../components/FavoritesList";
 
 const Home: NextPage = () => {
+  const currentWeatherInfo: any = {
+    id: 1,
+    city: "Santa Coloma de Farners",
+    weather: 1,
+    favorite: true,
+    temperature: 15,
+    probPrecipitation: 30,
+    humidity: 45,
+    windSpeed: 60,
+  };
+
+  const favoriteLocations: any[] = [
+    {
+      id: 2,
+      city: "Sils",
+      weather: 1,
+      favorite: true,
+      temperature: 12,
+      probPrecipitation: 35,
+      humidity: 27,
+      windSpeed: 6,
+    },
+    {
+      id: 3,
+      city: "Palafrugell",
+      weather: 2,
+      favorite: true,
+      temperature: 9,
+      probPrecipitation: 100,
+      humidity: 60,
+      windSpeed: 46,
+    },
+    {
+      id: 4,
+      city: "Girona",
+      weather: 2,
+      favorite: true,
+      temperature: 6,
+      probPrecipitation: 100,
+      humidity: 87,
+      windSpeed: 12,
+    },
+    {
+      id: 1,
+      city: "Santa Coloma de Farners",
+      weather: 1,
+      favorite: true,
+      temperature: -3,
+      probPrecipitation: 62,
+      humidity: 36,
+      windSpeed: 9,
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -14,244 +69,9 @@ const Home: NextPage = () => {
 
       <div className="flex flex-col lg:flex-row h-full bg-[#f7f6f9]">
         <div className="flex flex-col bg-white p-6">
-          <div className="flex flex-row justify-between pb-4 items-center">
-            <div className="flex flex-row items-center text-base flex-1">
-              <FontAwesomeIcon
-                className="h-4 mr-2"
-                icon={faSearch}
-              ></FontAwesomeIcon>
-              <input
-                type="text"
-                className="placeholder:text-[#858585] flex-1 mr-2 rounded-xl bg-transparent"
-                placeholder="Introdueix un lloc ..."
-              ></input>
-            </div>
-            <FontAwesomeIcon className="h-4" icon={faLocationArrow} />
-          </div>
-          <div className="flex flex-col mb-4">
-            <div className="flex flex-row items-baseline justify-between">
-              <p className="text-2xl font-bold pr-2">Santa Coloma de Farners</p>
-              <div className="flex flex-row">
-                <img
-                  className="h-5 w-5"
-                  src="https://cdn-icons-png.flaticon.com/512/929/929559.png"
-                />
-              </div>
-            </div>
-            <div className="flex flex-row mb-4 text-xl">
-              <p className="text-black">Dimarts,</p>
-              <p className="text-[#858585]">14:00</p>
-            </div>
-            <div className="flex flex-col">
-              <img
-                className="w-28 h-28 text-center self-center"
-                src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-              />
-              <div className="flex flex-col">
-                <p className="text-5xl mb-4">12°C</p>
-                <div className="flex flex-col sm:flex-row lg:flex-col">
-                  <div className="flex flex-row text-base">
-                    <img
-                      className="h-5 mb-2 mr-2"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <p>
-                      Precipitació: <span className="text-[#858585]">2%</span>
-                    </p>
-                  </div>
-                  <div className="flex flex-row text-base">
-                    <img
-                      className="h-5 mb-2 mr-2"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <p>
-                      Humitat: <span className="text-[#858585]">99%</span>
-                    </p>
-                  </div>
-                  <div className="flex flex-row text-base">
-                    <img
-                      className="h-5 mb-2 mr-2"
-                      src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                    />
-                    <p>
-                      Vent: <span className="text-[#858585]">17 km/h</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-lg font-bold mb-4 text-[#858585]">
-              Llocs preferits
-            </span>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              <div className="flex flex-row bg-[#f7f6f9] rounded-lg p-2 shadow-md w-100">
-                <img
-                  className="w-8 h-8 mr-4 self-center"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <div className="flex flex-row justify-between">
-                    <p className="font-bold text-sm">Sils</p>
-                    <img
-                      className="h-4"
-                      src="https://cdn-icons-png.flaticon.com/512/929/929417.png"
-                    />
-                  </div>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-1 items-center">
-                      <p className="text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-1 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">100%</p>
-                    </div>
-                    <div className="flex flex-row pr-1 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">100%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">14km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row bg-[#f7f6f9] rounded-lg p-2 shadow-md w-auto">
-                <img
-                  className="w-8 h-8 mr-4 self-center"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <div className="flex flex-row justify-between">
-                    <p className="font-bold text-sm">Sils</p>
-                    <img
-                      className="h-4"
-                      src="https://cdn-icons-png.flaticon.com/512/929/929417.png"
-                    />
-                  </div>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-1 items-center">
-                      <p className="text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-1 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-1 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row bg-[#f7f6f9] rounded-lg p-2 shadow-md w-auto">
-                <img
-                  className="w-8 h-8 mr-4 self-center"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <div className="flex flex-row justify-between">
-                    <p className="font-bold text-sm">Sils</p>
-                    <img
-                      className="h-4"
-                      src="https://cdn-icons-png.flaticon.com/512/929/929417.png"
-                    />
-                  </div>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-1 items-center">
-                      <p className="text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-1 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-1 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row bg-[#f7f6f9] rounded-lg p-2 shadow-md w-auto">
-                <img
-                  className="w-8 h-8 mr-4 self-center"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <div className="flex flex-row justify-between">
-                    <p className="font-bold text-sm">Sils</p>
-                    <img
-                      className="h-4"
-                      src="https://cdn-icons-png.flaticon.com/512/929/929417.png"
-                    />
-                  </div>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-1 items-center">
-                      <p className="text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-1 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-1 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Search />
+          <CurrentWeather currentWeather={currentWeatherInfo} />
+          <FavoritesList favoriteLocations={favoriteLocations} />
         </div>
       </div>
       <div className="flex flex-col flex-1 bg-[#f7f6f9] h-ful p-6">
