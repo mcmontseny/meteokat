@@ -5,18 +5,13 @@ import CurrentWeather from "../components/CurrentWeather";
 import FavoritesList from "../components/FavoritesList";
 import SummaryCard from "../components/SummaryCard";
 import Forecast from "../components/Forecast";
+import moment from "moment";
 
-const Home: NextPage = () => {
-  const currentWeatherInfo: any = {
-    id: 1,
-    city: "Santa Coloma de Farners",
-    weather: 1,
-    favorite: true,
-    temperature: 15,
-    probPrecipitation: 30,
-    humidity: 45,
-    windSpeed: 60,
-  };
+const DEFAULT_CITY = 17193;
+const API_KEY =
+  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtY21vbnRzZW55LmRldkBnbWFpbC5jb20iLCJqdGkiOiIyNjQ4ZWNlNy1kZGQzLTRiYWUtODkwNC0wMjY0MGIxMmI0NWIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTYzOTg2NzAxNiwidXNlcklkIjoiMjY0OGVjZTctZGRkMy00YmFlLTg5MDQtMDI2NDBiMTJiNDViIiwicm9sZSI6IiJ9.UVZtA-1Zvg544pK7fraZ4aWw9nf-Dd0h05QufhOU3TU";
+
+const Home: NextPage = (props: any) => {
 
   const favoriteLocations: any[] = [
     {
@@ -72,7 +67,7 @@ const Home: NextPage = () => {
       <div className="flex flex-col lg:flex-row h-full bg-[#f7f6f9]">
         <div className="flex flex-col bg-white p-6">
           <Search />
-          <CurrentWeather currentWeather={currentWeatherInfo} />
+          <CurrentWeather currentWeather={props.currentWeather} />
           <FavoritesList favoriteLocations={favoriteLocations} />
         </div>
       </div>
@@ -496,5 +491,76 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const weatherByHoursAPI =
+    "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/";
+  const weatherByDaysAPI =
+    "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/";
+  const params = `${DEFAULT_CITY}?api_key=${API_KEY}`;
+
+  const dataByHoursAMET = await fetch(`${weatherByHoursAPI}${params}`).then(
+    (response) => response.json()
+  );
+
+  const dataByDaysAMET = await fetch(`${weatherByDaysAPI}${params}`).then(
+    (response) => response.json()
+  );
+
+  const weatherByHours = await fetch(dataByHoursAMET.datos).then((response) =>
+    response.json()
+  );
+  const weatherByDays = await fetch(dataByDaysAMET.datos).then((response) =>
+    response.json()
+  );
+  const currentWeather = getCurrentWeather(weatherByHours);
+
+  return {
+    props: {
+      weatherByHours,
+      weatherByDays,
+      currentWeather: {...currentWeather, favorite: true},
+    },
+  };
+}
+
+export function getCurrentWeather(weatherByHours: any) {
+  return weatherByHours.map((weather: any) => {
+    const actualHour = moment().format("HH");
+    const { id, elaborado, nombre, provincia, prediccion } = weather;
+
+    // Com que l'API no s'actualiza amb regularitat, hem de revisar si tenim l'hora
+    // al actual al primer dia. Si no la trobem setejem el dia actual a 1 per a salta de dia.
+  
+    const dayInAPI = prediccion.dia[0]['estadoCielo'].find(
+      (el: any) => el.periodo === actualHour
+    ) ? 0 : 1;
+
+    Object.keys(prediccion.dia[dayInAPI]).map((key: any) => {
+
+      if (!Array.isArray(prediccion.dia[dayInAPI][key])) return;
+
+      if (
+        prediccion.dia[dayInAPI][key][0].periodo.length !== 2 &&
+        prediccion.dia[dayInAPI][key][0].periodo.length !== 4
+      )
+        return;
+
+      if (prediccion.dia[dayInAPI][key][0].periodo.length === 2) {
+        let element: any = prediccion.dia[dayInAPI][key].find(
+          (el: any) => el.periodo === actualHour
+        );
+        const elVal: any = element?.value ? element.value : element?.velocidad;
+        prediccion.dia[dayInAPI][key] = Array.isArray(elVal) ? elVal[0] : elVal;
+      } else {
+        prediccion.dia[dayInAPI][key] =
+          prediccion.dia[dayInAPI][key].lengt === 1
+            ? prediccion.dia[dayInAPI][key][0].value
+            : prediccion.dia[dayInAPI][key][1].value;
+      }
+    });
+    return {id, elaborado, nombre, provincia, ...prediccion.dia[dayInAPI]};
+  })[0];
+}
 
 export default Home;

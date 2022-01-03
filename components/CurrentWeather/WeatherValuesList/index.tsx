@@ -1,25 +1,25 @@
 import WeatherValueItem from "./WeatherValueItem";
 
 function WeatherValuesList(props: any) {
-  const { probPrecipitation, humidity, windSpeed } = props.currentWeather;
+  const { probPrecipitacion, humedadRelativa, vientoAndRachaMax } = props.currentWeather;
 
   const weatherValues = [
     {
       icon: "https://cdn-icons-png.flaticon.com/512/3093/3093303.png",
       name: "Precipitació",
-      value: probPrecipitation,
+      value: probPrecipitacion,
       dataType: "%",
     },
     {
       icon: "https://cdn-icons-png.flaticon.com/512/3093/3093303.png",
       name: "Humitat",
-      value: humidity,
+      value: humedadRelativa,
       dataType: "%",
     },
     {
       icon: "https://cdn-icons-png.flaticon.com/512/3093/3093303.png",
       name: "Vent",
-      value: windSpeed,
+      value: vientoAndRachaMax,
       dataType: "km/h",
     },
   ];

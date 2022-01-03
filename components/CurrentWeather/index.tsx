@@ -1,24 +1,22 @@
 import moment from "moment";
 import localization from "moment/locale/ca";
 import WeatherValuesList from "./WeatherValuesList";
+import * as utils from "../../lib/utils";
 
 moment.updateLocale("ca", localization);
 
 function CurrentWeather(props: any) {
   const {
-    city,
-    weather,
+    nombre,
+    estadoCielo,
     favorite,
-    temperature,
-    probPrecipitation,
-    humidity,
-    windSpeed,
+    temperatura
   } = props.currentWeather;
 
   return (
     <div className="flex flex-col mb-4">
       <div className="flex flex-row items-baseline justify-between">
-        <p className="text-2xl font-bold pr-2">{city}</p>
+        <p className="text-2xl font-bold pr-2">{nombre}</p>
         <div className="flex flex-row">
           {favorite ? (
             <img
@@ -34,21 +32,14 @@ function CurrentWeather(props: any) {
         </div>
       </div>
       <div className="flex flex-row mb-4 text-xl">
-        <p className="text-black capitalize">{currentTxtDay()},</p>
+        <p className="text-black capitalize mr-1">{currentTxtDay()},</p>
         <p className="text-[#858585]">{currentHour()}</p>
       </div>
-      {weather === 1 ? (
-        <img
+      <img
           className="w-28 h-28 text-center self-center"
-          src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
+          src={utils.getWeatherImgByWeather(estadoCielo)}
         />
-      ) : (
-        <img
-          className="w-28 h-28 text-center self-center"
-          src="https://cdn-icons-png.flaticon.com/512/3093/3093313.png"
-        />
-      )}
-      <p className="text-5xl mb-4">{temperature}°C</p>
+      <p className="text-5xl mb-4">{temperatura}°C</p>
       <WeatherValuesList currentWeather={props.currentWeather} />
     </div>
   );
