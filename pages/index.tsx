@@ -7,9 +7,16 @@ import SummaryCard from "../components/SummaryCard";
 import Forecast from "../components/Forecast";
 import moment from "moment";
 
-const DEFAULT_CITY = 17193;
-const API_KEY =
-  "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtY21vbnRzZW55LmRldkBnbWFpbC5jb20iLCJqdGkiOiIyNjQ4ZWNlNy1kZGQzLTRiYWUtODkwNC0wMjY0MGIxMmI0NWIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTYzOTg2NzAxNiwidXNlcklkIjoiMjY0OGVjZTctZGRkMy00YmFlLTg5MDQtMDI2NDBiMTJiNDViIiwicm9sZSI6IiJ9.UVZtA-1Zvg544pK7fraZ4aWw9nf-Dd0h05QufhOU3TU";
+import getConfig from "next/config";
+const {
+  publicRuntimeConfig: {
+    DEFAULT_CITY,
+    API_KEY,
+    AEMET_API_URL,
+    AEMET_API_DAILY_URL,
+    AEMET_API_HOURLY_URL,
+  },
+} = getConfig();
 
 const Home: NextPage = (props: any) => {
   const favoriteLocations: any[] = [
@@ -254,7 +261,9 @@ const Home: NextPage = (props: any) => {
               </div>
               <div className="flex flex-row items-center">
                 <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
-                <p className="text-base text-[#858585] self-end">No disponible</p>
+                <p className="text-base text-[#858585] self-end">
+                  No disponible
+                </p>
               </div>
             </SummaryCard>
             <SummaryCard title="Estat del vent">
@@ -325,7 +334,7 @@ const Home: NextPage = (props: any) => {
               <div className="flex flex-row items-center">
                 <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
                 <p className="text-base text-[#858585] self-end">
-                No disponible
+                  No disponible
                 </p>
               </div>
             </SummaryCard>
@@ -336,7 +345,7 @@ const Home: NextPage = (props: any) => {
               <div className="flex flex-row items-center">
                 <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
                 <p className="text-base text-[#858585] self-end">
-                No disponible
+                  No disponible
                 </p>
               </div>
             </SummaryCard>
@@ -348,37 +357,77 @@ const Home: NextPage = (props: any) => {
 };
 
 export async function getStaticProps() {
-  const weatherByHoursAPI =
-    "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/horaria/";
-  const weatherByDaysAPI =
-    "https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/";
-  const params = `${DEFAULT_CITY}?api_key=${API_KEY}`;
+  const secUrls: any = await getAEMETSecureEndpoints();
+  if (secUrls?.err) throw secUrls.err;
 
-  const dataByHoursAMET = await fetch(`${weatherByHoursAPI}${params}`).then(
-    (response) => response.json()
+  const AEMETData: any = await getAEMETData(secUrls);
+  if (AEMETData?.err) throw AEMETData.err;
+
+  const mappedWeatherByDays: any = getWeatherByDays(AEMETData?.weatherByDays);
+  const mappedWeatherByHours: any = getWeatherByHours(
+    AEMETData?.weatherByHours
   );
 
-  const dataByDaysAMET = await fetch(`${weatherByDaysAPI}${params}`).then(
-    (response) => response.json()
-  );
-
-  const weatherByHours = await fetch(dataByHoursAMET.datos).then((response) =>
-    response.json()
-  );
-  const weatherByDays = await fetch(dataByDaysAMET.datos).then((response) =>
-    response.json()
-  );
-
-  const mappedWeatherByHours: any = getWeatherByHours(weatherByHours);
   const currentWeather: any = getCurrentWeather(mappedWeatherByHours);
 
   return {
     props: {
       weatherByHours: mappedWeatherByHours,
-      weatherByDays,
+      weatherByDays: mappedWeatherByDays,
       currentWeather,
     },
   };
+}
+
+export function getAEMETSecureEndpoints(): Promise<any> {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const weatherByHoursAPI = `${AEMET_API_URL}${AEMET_API_HOURLY_URL}`;
+      const weatherByDaysAPI = `${AEMET_API_URL}${AEMET_API_DAILY_URL}`;
+      const params = `${DEFAULT_CITY}?api_key=${API_KEY}`;
+
+      const dataByHoursAMET = await fetch(`${weatherByHoursAPI}${params}`)
+        .then((response) => response.json())
+        .catch((err) => {
+          console.log("Error a l'obtenir url dades horaries API AEMET!", err);
+          throw err;
+        });
+
+      const dataByDaysAMET = await fetch(`${weatherByDaysAPI}${params}`)
+        .then((response) => response.json())
+        .catch((err) => {
+          console.log("Error a l'obtenir url dades diaries API AEMET!", err);
+          throw err;
+        });
+
+      resolve({ dataByDaysAMET, dataByHoursAMET });
+    } catch (error) {
+      reject({ err: error });
+    }
+  });
+}
+
+export function getAEMETData(secUrls: any): Promise<any> {
+  return new Promise<any>(async (resolve, reject) => {
+    try {
+      const weatherByHours = await fetch(secUrls?.dataByHoursAMET?.datos)
+        .then((response) => response.json())
+        .catch((err) => {
+          console.log("Error a l'obtenir dades horaries API AEMET!", err);
+          throw err;
+        });
+      const weatherByDays = await fetch(secUrls?.dataByDaysAMET?.datos)
+        .then((response) => response.json())
+        .catch((err) => {
+          console.log("Error a l'obtenir dades diaries API AEMET!", err);
+          throw err;
+        });
+
+      resolve({ weatherByHours, weatherByDays });
+    } catch (error) {
+      reject({ err: error });
+    }
+  });
 }
 
 export function getWeatherByHours(weatherByHours: any): any[] {
@@ -431,6 +480,10 @@ export function getWeatherByHours(weatherByHours: any): any[] {
   return mappedWeatherByHours;
 }
 
+export function getWeatherByDays(weatherByDays: any): any[] {
+  return [];
+}
+
 export function getCurrentWeather(
   mappedWeatherByHours: any,
   fab: boolean = false
@@ -443,50 +496,5 @@ export function getCurrentWeather(
   mappedCurrentWeather["favorite"] = fab;
   return mappedCurrentWeather;
 }
-
-// export function getWeatherByHours(weatherByHours: any): Map<number, any> {
-//   const days = new Map(); // Map dies de la setmana
-
-//   const { id, elaborado, nombre, provincia, prediccion } = weatherByHours[0];
-
-//   prediccion.dia.map((day: any, index: number) => {
-//     const keyDay: number = +moment(day.fecha).format("D");
-
-//     const todayDay: number = +moment().format("D");
-//     const todayHour: number = +moment().format("HH");
-
-//     if (keyDay !== todayDay && index === 0) return; // Si el primer dia no es l'actual ignorem.
-
-//     const hours = new Map(); // Map hores del dia
-//     let hour: number = keyDay === todayDay ? todayHour : 0;
-
-//     while (hour < 24) {
-//       const hourInfo = { ...day, id, elaborado, nombre, provincia };
-//       for (const key of Object.keys(hourInfo)) {
-//         if (!Array.isArray(hourInfo[key])) break;
-//         hourInfo[key] = hourInfo[key].find((el: any) => {
-//           if (el.periodo.length !== 2) {
-//             // Si el periode és rang hores
-//             const [initHour, lastHour] = [
-//               (+el.periodo.slice(0, 2) === 1 ? 0 : +el.periodo.slice(0, 2)), // Periode 01 a 07 convert 01 a 0
-//               (+el.periodo.slice(2) === 1 ? 24 : +el.periodo.slice(2)), // Periode 19 a 01 convert 01 a 24
-//             ];
-//             return hour === 0 || (hour >= initHour && hour < lastHour);
-//           }
-//           return +el.periodo === hour; // Si el periode és una hora concreta
-//         });
-//       }
-
-//       // Si tenim valors undefined, no guardem
-//       if (!Object.values(hourInfo).includes(undefined)) {
-//         hours.set(hour, hourInfo);
-//       }
-
-//       hour++;
-//     }
-//     days.set(keyDay, hours); // Key dia de les dades. Val: Informació de les hores.
-//   });
-//   return days;
-// }
 
 export default Home;
