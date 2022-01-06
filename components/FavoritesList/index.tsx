@@ -1,7 +1,8 @@
 import FavoriteItem from "./FavoriteItem";
 
 function FavoritesList(props: any) {
-  const { favoriteLocations } = props;
+  let { favoriteLocations } = props;
+  favoriteLocations = [];
   return (
     <div className="flex flex-col">
       <span className="text-lg font-bold mb-4 text-[#858585]">

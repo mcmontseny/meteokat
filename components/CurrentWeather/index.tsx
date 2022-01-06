@@ -2,6 +2,8 @@ import moment from "moment";
 import localization from "moment/locale/ca";
 import WeatherValuesList from "./WeatherValuesList";
 import * as utils from "../../lib/utils";
+import getConfig from 'next/config'
+const { publicRuntimeConfig: {IMG_PATH} } = getConfig();
 
 moment.updateLocale("ca", localization);
 
@@ -18,17 +20,10 @@ function CurrentWeather(props: any) {
       <div className="flex flex-row items-baseline justify-between">
         <p className="text-2xl font-bold pr-2">{nombre}</p>
         <div className="flex flex-row">
-          {favorite ? (
             <img
               className="h-5 w-5"
-              src="https://cdn-icons-png.flaticon.com/512/929/929417.png"
+              src={`${IMG_PATH}${favorite ? 'fab.png' : 'no-fab.png'}`}
             />
-          ) : (
-            <img
-              className="h-5 w-5"
-              src="https://cdn-icons-png.flaticon.com/512/929/929559.png"
-            />
-          )}
         </div>
       </div>
       <div className="flex flex-row mb-4 text-xl">
@@ -37,9 +32,9 @@ function CurrentWeather(props: any) {
       </div>
       <img
           className="w-28 h-28 text-center self-center"
-          src={utils.getWeatherImgByWeather(estadoCielo)}
+          src={utils.getWeatherImgByWeather(estadoCielo.value)}
         />
-      <p className="text-5xl mb-4">{temperatura}°C</p>
+      <p className="text-5xl mb-4">{temperatura.value}°C</p>
       <WeatherValuesList currentWeather={props.currentWeather} />
     </div>
   );

@@ -12,7 +12,6 @@ const API_KEY =
   "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtY21vbnRzZW55LmRldkBnbWFpbC5jb20iLCJqdGkiOiIyNjQ4ZWNlNy1kZGQzLTRiYWUtODkwNC0wMjY0MGIxMmI0NWIiLCJpc3MiOiJBRU1FVCIsImlhdCI6MTYzOTg2NzAxNiwidXNlcklkIjoiMjY0OGVjZTctZGRkMy00YmFlLTg5MDQtMDI2NDBiMTJiNDViIiwicm9sZSI6IiJ9.UVZtA-1Zvg544pK7fraZ4aWw9nf-Dd0h05QufhOU3TU";
 
 const Home: NextPage = (props: any) => {
-
   const favoriteLocations: any[] = [
     {
       id: 2,
@@ -513,54 +512,63 @@ export async function getStaticProps() {
   const weatherByDays = await fetch(dataByDaysAMET.datos).then((response) =>
     response.json()
   );
-  const currentWeather = getCurrentWeather(weatherByHours);
 
+  const mappedWeatherByHours: any = getWeatherByHours(weatherByHours);
+
+  const actualDay = +moment().format('D');
+  const actualHour = +moment().format('HH');
+
+  const mappedCurrentWeather: any = mappedWeatherByHours.get(actualDay).get(actualHour);
+  mappedCurrentWeather['favorite'] = false;
   return {
     props: {
       weatherByHours,
       weatherByDays,
-      currentWeather: {...currentWeather, favorite: true},
+      currentWeather: {...mappedCurrentWeather},
     },
   };
 }
 
-export function getCurrentWeather(weatherByHours: any) {
-  return weatherByHours.map((weather: any) => {
-    const actualHour = moment().format("HH");
-    const { id, elaborado, nombre, provincia, prediccion } = weather;
+export function getWeatherByHours(weatherByHours: any) {
+  const days = new Map(); // Map dies de la setmana
 
-    // Com que l'API no s'actualiza amb regularitat, hem de revisar si tenim l'hora
-    // al actual al primer dia. Si no la trobem setejem el dia actual a 1 per a salta de dia.
-  
-    const dayInAPI = prediccion.dia[0]['estadoCielo'].find(
-      (el: any) => el.periodo === actualHour
-    ) ? 0 : 1;
+  const { id, elaborado, nombre, provincia, prediccion } = weatherByHours[0];
 
-    Object.keys(prediccion.dia[dayInAPI]).map((key: any) => {
+  prediccion.dia.map((day: any, index: number) => {
+    const keyDay = +moment(day.fecha).format("D");
 
-      if (!Array.isArray(prediccion.dia[dayInAPI][key])) return;
+    if (keyDay !== +moment().format("D") && index === 0) return; // Si el primer dia no es l'actual ignorem.
 
-      if (
-        prediccion.dia[dayInAPI][key][0].periodo.length !== 2 &&
-        prediccion.dia[dayInAPI][key][0].periodo.length !== 4
-      )
-        return;
+    const hours = new Map(); // Map hores del dia
+    let hour: number = index === 0 ? +moment().format("HH") : 0;
 
-      if (prediccion.dia[dayInAPI][key][0].periodo.length === 2) {
-        let element: any = prediccion.dia[dayInAPI][key].find(
-          (el: any) => el.periodo === actualHour
-        );
-        const elVal: any = element?.value ? element.value : element?.velocidad;
-        prediccion.dia[dayInAPI][key] = Array.isArray(elVal) ? elVal[0] : elVal;
-      } else {
-        prediccion.dia[dayInAPI][key] =
-          prediccion.dia[dayInAPI][key].lengt === 1
-            ? prediccion.dia[dayInAPI][key][0].value
-            : prediccion.dia[dayInAPI][key][1].value;
+    while (hour < 24) {
+      const hourInfo = { ...day, id, elaborado, nombre, provincia };
+      for (const key of Object.keys(hourInfo)) {
+        if (!Array.isArray(hourInfo[key])) break;
+        hourInfo[key] = hourInfo[key].find((el: any) => {
+          if (el.periodo.length !== 2) {
+            // Si el periode és rang hores
+            const [initHour, lastHour] = [
+              +el.periodo.slice(0, 2),
+              +el.periodo.slice(2),
+            ];
+            return hour === 0 || (hour >= initHour && hour <= lastHour);
+          }
+          return +el.periodo === hour; // Si el periode és una hora concreta
+        });
       }
-    });
-    return {id, elaborado, nombre, provincia, ...prediccion.dia[dayInAPI]};
-  })[0];
+
+      // Si tenim valors undefined, no guardem
+      if (!Object.values(hourInfo).includes(undefined)) {
+        hours.set(hour, hourInfo);
+      }
+
+      hour++;
+    }
+    days.set(keyDay, hours); // Key dia de les dades. Val: Informació de les hores.
+  });
+  return days;
 }
 
 export default Home;
