@@ -20,4 +20,8 @@ function getWeatherImgByWeather(weather: string) {
   }
 }
 
-export { getWeatherImgByWeather };
+function getHourInTxt(hour: number) {
+  return `${(''+hour).padStart(2, "0")}:00`
+}
+
+export { getWeatherImgByWeather, getHourInTxt };

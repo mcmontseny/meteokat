@@ -80,150 +80,10 @@ const Home: NextPage = (props: any) => {
             <Forecast
               title="Predicció pròximes hores"
               btnName="Visualitzar més hores"
-            >
-              <div className="flex flex-row rounded-lg">
-                <img
-                  className="w-8 h-8 self-center mr-4"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <p className="font-bold text-black text-sm">18:00</p>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-2 items-center">
-                      <p className="text-black text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row rounded-lg">
-                <img
-                  className="w-8 h-8 self-center mr-4"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <p className="font-bold text-black text-sm">19:00</p>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-2 items-center">
-                      <p className="text-black text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row rounded-lg">
-                <img
-                  className="w-8 h-8 self-center mr-4"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <p className="font-bold text-black text-sm">20:00</p>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-2 items-center">
-                      <p className="text-black text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row rounded-lg">
-                <img
-                  className="w-8 h-8 self-center mr-4"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <p className="font-bold text-black text-sm">21:00</p>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-2 items-center">
-                      <p className="text-black text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Forecast>
+              data={props.weatherByHours}
+            ></Forecast>
 
-            <Forecast title="Predicció 7 dies" btnName="Visualitzar més dies">
+            {/* <Forecast title="Predicció 7 dies" btnName="Visualitzar més dies">
               <div className="flex flex-row rounded-lg">
                 <img
                   className="w-8 h-8 self-center mr-4"
@@ -376,7 +236,7 @@ const Home: NextPage = (props: any) => {
                   </div>
                 </div>
               </div>
-            </Forecast>
+            </Forecast> */}
           </div>
         </div>
 
@@ -389,12 +249,12 @@ const Home: NextPage = (props: any) => {
                   className="w-10 h-10 self-end"
                   src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
                 />
-                <p className="pl-4 self-end text-4xl text-black">3</p>
+                <p className="pl-4 self-end text-4xl text-black">X</p>
                 <p className="self-end text-xl text-[#858585]">/12</p>
               </div>
               <div className="flex flex-row items-center">
-                <div className="h-3 w-3 bg-gradient-to-r from-green-400 to-green-600 rounded-full mr-2"></div>
-                <p className="text-base text-[#858585] self-end">Baix</p>
+                <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
+                <p className="text-base text-[#858585] self-end">No disponible</p>
               </div>
             </SummaryCard>
             <SummaryCard title="Estat del vent">
@@ -459,24 +319,24 @@ const Home: NextPage = (props: any) => {
             </SummaryCard>
             <SummaryCard title="Visibilitat">
               <div className="flex flex-row pb-2">
-                <p className="self-end text-4xl text-black mr-2">5.2</p>
+                <p className="self-end text-4xl text-black mr-2">X</p>
                 <p className="self-end text-xl text-[#858585]">km</p>
               </div>
               <div className="flex flex-row items-center">
-                <div className="h-3 w-3 bg-gradient-to-r from-green-400 to-green-600 rounded-full mr-2"></div>
+                <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
                 <p className="text-base text-[#858585] self-end">
-                  Bona visibilitat
+                No disponible
                 </p>
               </div>
             </SummaryCard>
             <SummaryCard title="Qualitat de l'aire">
               <div className="flex flex-row pb-2">
-                <p className="self-end text-4xl text-black mr-2">105</p>
+                <p className="self-end text-4xl text-black mr-2">X</p>
               </div>
               <div className="flex flex-row items-center">
                 <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
                 <p className="text-base text-[#858585] self-end">
-                  No saludable
+                No disponible
                 </p>
               </div>
             </SummaryCard>
@@ -512,10 +372,9 @@ export async function getStaticProps() {
   const mappedWeatherByHours: any = getWeatherByHours(weatherByHours);
   const currentWeather: any = getCurrentWeather(mappedWeatherByHours);
 
-  console.log(currentWeather);
   return {
     props: {
-      weatherByHours,
+      weatherByHours: mappedWeatherByHours,
       weatherByDays,
       currentWeather,
     },

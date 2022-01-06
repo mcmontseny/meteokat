@@ -1,9 +1,12 @@
 import WeatherValueItem from "./WeatherValueItem";
-import getConfig from 'next/config'
-const { publicRuntimeConfig: {IMG_PATH} } = getConfig();
+import getConfig from "next/config";
+const {
+  publicRuntimeConfig: { IMG_PATH },
+} = getConfig();
 
 function WeatherValuesList(props: any) {
-  const { probPrecipitacion, humedadRelativa, vientoAndRachaMax } = props.currentWeather;
+  const { probPrecipitacion, humedadRelativa, vientoAndRachaMax } =
+    props.currentWeather;
 
   const weatherValues = [
     {
@@ -30,7 +33,7 @@ function WeatherValuesList(props: any) {
     <div className="flex flex-col">
       <div className="flex flex-col sm:flex-row sm:space-x-2 lg:space-x-0 lg:flex-col">
         {weatherValues.map((weatherValue, index) => (
-          <WeatherValueItem weatherValue={weatherValue} key={index}/>
+          <WeatherValueItem weatherValue={weatherValue} key={index} />
         ))}
       </div>
     </div>
