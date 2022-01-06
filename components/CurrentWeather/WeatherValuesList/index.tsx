@@ -29,8 +29,8 @@ function WeatherValuesList(props: any) {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col sm:flex-row sm:space-x-2 lg:space-x-0 lg:flex-col">
-        {weatherValues.map((weatherValue) => (
-          <WeatherValueItem weatherValue={weatherValue} />
+        {weatherValues.map((weatherValue, index) => (
+          <WeatherValueItem weatherValue={weatherValue} key={index}/>
         ))}
       </div>
     </div>
