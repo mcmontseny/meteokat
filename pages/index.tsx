@@ -3,7 +3,7 @@ import Head from "next/head";
 import Search from "../components/Search";
 import CurrentWeather from "../components/CurrentWeather";
 import FavoritesList from "../components/FavoritesList";
-import SummaryCard from "../components/SummaryCard";
+import SummaryCardList from "../components/SummaryCardList";
 import Forecast from "../components/Forecast";
 import moment from "moment";
 
@@ -101,109 +101,16 @@ const Home: NextPage = (props: any) => {
 
         <div className="flex flex-col">
           <p className="text-xl font-bold mb-4">El més destacat d'avui</p>
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            <SummaryCard title="Índex ultraviolat (UVI)">
-              <div className="flex flex-row pb-2">
-                <img
-                  className="w-10 h-10 self-end"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <p className="pl-4 self-end text-4xl text-black">X</p>
-                <p className="self-end text-xl text-[#858585]">/12</p>
-              </div>
-              <div className="flex flex-row items-center">
-                <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
-                <p className="text-base text-[#858585] self-end">
-                  No disponible
-                </p>
-              </div>
-            </SummaryCard>
-            <SummaryCard title="Estat del vent">
-              <div className="flex flex-row pb-2">
-                <img
-                  className="w-10 h-10 self-end"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093317.png"
-                />
-                <p className="pl-4 pr-2 self-end text-4xl text-black">17.4</p>
-                <p className="self-end text-xl text-[#858585]">km/h</p>
-              </div>
-              <div className="flex flex-row">
-                <img
-                  className="h-5 mr-2 self-end"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <p className="text-base text-[#858585] self-end">SSE</p>
-              </div>
-            </SummaryCard>
-            <SummaryCard title="Sortida i posta de sol">
-              <div className="flex flex-row pb-2">
-                <div className="flex flex-row mr-2">
-                  <img
-                    className="w-10 h-10"
-                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                  />
-                  <div className="flex flex-col ml-2">
-                    <p className="text-black font-bold">06:35</p>
-                    <p className="text-sm text-[#858585]">-1m 46s</p>
-                  </div>
-                </div>
-                <div className="flex flex-row">
-                  <img
-                    className="w-10 h-10"
-                    src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                  />
-                  <div className="flex flex-col ml-2">
-                    <p className="text-black font-bold">17:42</p>
-                    <p className="text-sm text-[#858585]">+2m 22s</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row items-center">
-                <p className="text-base text-[#858585] self-end">
-                  11 hores i 7 minuts de llum
-                </p>
-              </div>
-            </SummaryCard>
-            <SummaryCard title="Humitat">
-              <div className="flex flex-row pb-2">
-                <img
-                  className="w-10 h-10 self-end"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <p className="pl-4 self-end text-4xl text-black mr-2">23</p>
-                <p className="self-star text-xl text-[#858585]">%</p>
-              </div>
-              <div className="flex flex-row items-center">
-                <div className="h-3 w-3 bg-gradient-to-r from-green-400 to-green-600 rounded-full mr-2"></div>
-                <p className="text-base text-[#858585] self-end">Normal</p>
-              </div>
-            </SummaryCard>
-            <SummaryCard title="Visibilitat">
-              <div className="flex flex-row pb-2">
-                <p className="self-end text-4xl text-black mr-2">X</p>
-                <p className="self-end text-xl text-[#858585]">km</p>
-              </div>
-              <div className="flex flex-row items-center">
-                <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
-                <p className="text-base text-[#858585] self-end">
-                  No disponible
-                </p>
-              </div>
-            </SummaryCard>
-            <SummaryCard title="Qualitat de l'aire">
-              <div className="flex flex-row pb-2">
-                <p className="self-end text-4xl text-black mr-2">X</p>
-              </div>
-              <div className="flex flex-row items-center">
-                <div className="h-3 w-3 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full mr-2"></div>
-                <p className="text-base text-[#858585] self-end">
-                  No disponible
-                </p>
-              </div>
-            </SummaryCard>
-          </div>
+          <SummaryCardList data={"hola"} />
         </div>
       </div>
+      {/* <div className="flex flex-col lg:flex-row h-full bg-[#f7f6f9]">
+        <div className="flex flex-col bg-white p-6">
+          <Search />
+          <CurrentWeather currentWeather={props.currentWeather} />
+          <FavoritesList favoriteLocations={favoriteLocations} />
+        </div>
+      </div> */}
     </>
   );
 };
@@ -363,7 +270,8 @@ export function getWeatherByDays(weatherByDays: any): any[] {
           mappedWeatherDay[key] = {
             maxima,
             minima,
-            promedio: maxima && minima ? Math.round((maxima + minima) / 2) : "-",
+            promedio:
+              maxima && minima ? Math.round((maxima + minima) / 2) : "-",
           };
         }
       }
