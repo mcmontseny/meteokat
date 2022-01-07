@@ -88,162 +88,14 @@ const Home: NextPage = (props: any) => {
               title="Predicció pròximes hores"
               btnName="Visualitzar més hores"
               data={props.weatherByHours}
+              type="hours"
             ></Forecast>
-
-            {/* <Forecast title="Predicció 7 dies" btnName="Visualitzar més dies">
-              <div className="flex flex-row rounded-lg">
-                <img
-                  className="w-8 h-8 self-center mr-4"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <p className="font-bold text-black text-sm">
-                    <span className="text-[#858585]">Dj,</span> 23 desembre
-                  </p>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-2 items-center">
-                      <p className="text-blue-600 pr-1 text-sm font">-3°C</p>
-                      <p className="text-red-600 text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row rounded-lg">
-                <img
-                  className="w-8 h-8 self-center mr-4"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <p className="font-bold text-black text-sm">
-                    <span className="text-[#858585]">Dv,</span> 24 desembre
-                  </p>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-2 items-center">
-                      <p className="text-blue-600 pr-1 text-sm font">-3°C</p>
-                      <p className="text-red-600 text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row rounded-lg">
-                <img
-                  className="w-8 h-8 self-center mr-4"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <p className="font-bold text-black text-sm">
-                    <span className="text-[#858585]">Ds,</span> 25 desembre
-                  </p>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-2 items-center">
-                      <p className="text-blue-600 pr-1 text-sm font">-3°C</p>
-                      <p className="text-red-600 text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-row rounded-lg">
-                <img
-                  className="w-8 h-8 self-center mr-4"
-                  src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                />
-                <div className="flex flex-col flex-1">
-                  <p className="font-bold text-black text-sm">
-                    <span className="text-[#858585]">Dg,</span> 26 desembre
-                  </p>
-                  <div className="flex flex-row flex-wrap">
-                    <div className="flex flex-row pr-2 items-center">
-                      <p className="text-blue-600 pr-1 text-sm font">-3°C</p>
-                      <p className="text-red-600 text-sm">14°C</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">67%</p>
-                    </div>
-                    <div className="flex flex-row pr-2 items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">38%</p>
-                    </div>
-                    <div className="flex flex-row items-center">
-                      <img
-                        className="h-3 pr-1"
-                        src="https://cdn-icons-png.flaticon.com/512/3093/3093303.png"
-                      />
-                      <p className="text-sm">8km/h</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Forecast> */}
+            <Forecast
+              title="Predicció 7 dies"
+              btnName="Visualitzar més dies"
+              data={props.weatherByDays}
+              type="days"
+            ></Forecast>
           </div>
         </div>
 
@@ -368,13 +220,12 @@ export async function getStaticProps() {
     AEMETData?.weatherByHours
   );
 
-  const currentWeather: any = getCurrentWeather(mappedWeatherByHours);
-
+  const mappedCurrentWeather: any = getCurrentWeather(mappedWeatherByHours);
   return {
     props: {
       weatherByHours: mappedWeatherByHours,
       weatherByDays: mappedWeatherByDays,
-      currentWeather,
+      currentWeather: mappedCurrentWeather,
     },
   };
 }
@@ -481,7 +332,66 @@ export function getWeatherByHours(weatherByHours: any): any[] {
 }
 
 export function getWeatherByDays(weatherByDays: any): any[] {
-  return [];
+  const { id, elaborado, nombre, provincia, prediccion } = weatherByDays[0];
+  return prediccion.dia
+    .map((day: any, index: number) => {
+      const keyDay: number = +moment(day.fecha).format("D");
+      const todayDay: number = +moment().format("D");
+
+      if (keyDay !== todayDay && index === 0) return; // Si el primer dia no es l'actual ignorem.
+      const mappedWeatherDay = {
+        ...day,
+        id,
+        elaborado,
+        nombre,
+        provincia,
+        day: keyDay,
+      };
+
+      for (const key of Object.keys(mappedWeatherDay)) {
+        // Si es un array agafem el periode de 00-24
+        if (Array.isArray(mappedWeatherDay[key])) {
+          mappedWeatherDay[key] =
+            mappedWeatherDay[key].length > 1
+              ? mappedWeatherDay[key].find((el: any) => {
+                  return el.periodo === "00-24";
+                })
+              : mappedWeatherDay[key][0]; // Si encara no tenim la prediccio amb peride agafem posicio 0
+        } else if (typeof mappedWeatherDay[key] === "object") {
+          // Si es un objecte agafem la maxima + minima + calculem la mitjana
+          const { maxima, minima } = mappedWeatherDay[key];
+          mappedWeatherDay[key] = {
+            maxima,
+            minima,
+            promedio: maxima && minima ? Math.round((maxima + minima) / 2) : "-",
+          };
+        }
+      }
+      return mappedWeatherDay;
+    })
+    .filter((el: any) => el); // Eliminar dies undefined
+}
+
+export function getFullWeatherByDays(weatherByDays: any): any[] {
+  const mappedWeatherByDays: any[] = [];
+
+  const { id, elaborado, nombre, provincia, prediccion } = weatherByDays[0];
+
+  prediccion.dia.map((day: any, index: number) => {
+    const keyDay: number = +moment(day.fecha).format("D");
+    const todayDay: number = +moment().format("D");
+
+    if (keyDay !== todayDay && index === 0) return; // Si el primer dia no es l'actual ignorem.
+    mappedWeatherByDays.push({
+      ...day,
+      id,
+      elaborado,
+      nombre,
+      provincia,
+      day: keyDay,
+    });
+  });
+  return mappedWeatherByDays;
 }
 
 export function getCurrentWeather(
